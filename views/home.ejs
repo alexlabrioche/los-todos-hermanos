@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todos</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>💃 Los Todos 💃</h1>
+    </header>
+    <ul class="todo-list">
+      <% todos.forEach(({ task, done, id }) => { %>
+      <div class="todo-item">
+        <a class="remove-todo-btn" href="/todos/remove/<%= id %>">💥</a>
+        <form method="GET" action="/todos/update/<%= id %>">
+          <input type="text" value="<%= task %>" name="task" id="todo-item_task" /> <input
+          type="checkbox" name="done" id="todo-item_done" <%= done === "true" && "checked" %> />
+          <input class="small-submit" type="submit" value="OK" />
+        </form>
+      </div>
+      <% }) %>
+    </ul>
+    <div class="add-todo">
+      <form action="/todos/add" method="POST">
+        <input type="text" name="task" id="task" />
+        <input type="checkbox" name="done" id="done" />
+        <input type="submit" value="Ajouter" />
+      </form>
+    </div>
+    <footer>made with 🌮</footer>
+  </body>
+</html>
